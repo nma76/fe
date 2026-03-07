@@ -14,6 +14,9 @@
 # Output folder 
 bin/
 
+# Test data folder
+test/
+
 # Logs
 *.log
 
