@@ -6,9 +6,12 @@ import (
 	"fe/internal/output"
 	"fe/internal/scanner"
 	"fmt"
+	"path/filepath"
 )
 
 func main() {
+	colorizer := output.PlatformColorizer{}
+
 	fmt.Println(("This is fe..."))
 	opts := cli.Parse()
 
@@ -20,9 +23,8 @@ func main() {
 		panic(err)
 	}
 
-	theme := output.Classic
-
 	for _, f := range files {
-		fmt.Println(theme.ExecutableColor(f))
+		c := colorizer.ForExecutable(filepath.Ext(f))
+		c.Println(f)
 	}
 }

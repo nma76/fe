@@ -15,7 +15,7 @@ type PlatformDetector struct{}
 func (PlatformDetector) IsExecutable(path string, info os.FileInfo) bool {
 	ext := strings.ToLower(filepath.Ext(path))
 	switch ext {
-	case ".exe", ".bat", ".cmd", ".com":
+	case ".exe", ".bat", ".cmd", ".com", ".ps1":
 		return true
 	default:
 		return false

@@ -1,5 +1,7 @@
 package output
 
-func Green(s string) string {
-	return "\033[32m" + s + "\033[0m"
+import "github.com/fatih/color"
+
+type Colorizer interface {
+	ForExecutable(ext string) *color.Color
 }
