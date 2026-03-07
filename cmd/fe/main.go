@@ -5,7 +5,6 @@ import (
 	"fe/internal/detector"
 	"fe/internal/output"
 	"fe/internal/scanner"
-	"path/filepath"
 )
 
 func main() {
@@ -13,8 +12,8 @@ func main() {
 	colorizer := output.PlatformColorizer{}
 
 	// Print a welcome message
-	c := colorizer.ForMessages()
-	c.Println(("This is fe... 2026 edition!"))
+	//c := colorizer.ForMessages()
+	//c.Println(("This is fe... 2026 edition!"))
 
 	// Parse command-line options
 	opts := cli.Parse()
@@ -31,9 +30,10 @@ func main() {
 		panic(err)
 	}
 
+	// fmt.Println("Debug:")
+	// fmt.Printf("%#v\n", files)
+	// fmt.Println("End Debug:")
+
 	// Print the found executables with appropriate colors
-	for _, f := range files {
-		c := colorizer.ForExecutable(filepath.Ext(f))
-		c.Println(f)
-	}
+	output.PrintFiles(files, colorizer)
 }
