@@ -8,3 +8,4 @@
 - lägga till CLI‑flaggor. 
 - bygga kolumnlayout. 
 - lägga till rekursiv scanning. 
+- target i Makefile som kontrollerar kompatibilitet
