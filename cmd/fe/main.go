@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	fmt.Println(("This is fe..."))
 	opts := cli.Parse()
 
 	det := detector.PlatformDetector{}

@@ -1,0 +1,23 @@
+# Go build cache & modules
+/pkg/
+/vendor/
+/go.sum
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code
+.vscode/
+
+# Output folder 
+bin/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
