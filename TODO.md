@@ -2,8 +2,8 @@
 
 ## 🔥 Nästa steg?
 
-- implementera UnixDetector (chmod +x). 
-- implementera WindowsDetector (extensions). 
+- implementera UnixDetector (chmod +x). ✅
+- implementera WindowsDetector (extensions). ✅
 - lägga till färgteman. 
 - lägga till CLI‑flaggor. 
 - bygga kolumnlayout. 
