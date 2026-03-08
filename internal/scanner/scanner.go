@@ -10,8 +10,8 @@ type Scanner struct {
 	Detector detector.ExecutableDetector
 }
 
-func (s Scanner) Scan(path string) ([]string, error) {
-	var executables []string
+func (s Scanner) Scan(path string) ([]os.FileInfo, error) {
+	var executables []os.FileInfo
 
 	entries, err := os.ReadDir(path)
 	if err != nil {
@@ -23,7 +23,7 @@ func (s Scanner) Scan(path string) ([]string, error) {
 		full := filepath.Join(path, e.Name())
 
 		if !info.IsDir() && s.Detector.IsExecutable(full, info) {
-			executables = append(executables, e.Name())
+			executables = append(executables, info)
 		}
 	}
 	return executables, nil

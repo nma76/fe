@@ -2,10 +2,10 @@ package output
 
 import (
 	"fe/internal/icon"
-	"path/filepath"
+	"os"
 )
 
-func PrintFiles(files []string, c Colorizer, ip icon.IconProvider) {
+func PrintFiles(files []os.FileInfo, c Colorizer, ip icon.IconProvider) {
 	// If no files were found, return early
 	if len(files) == 0 {
 		return
@@ -17,11 +17,11 @@ func PrintFiles(files []string, c Colorizer, ip icon.IconProvider) {
 	// Iterate over the found files and apply color and icons based on their extensions
 	for i, f := range files {
 		// Get the appropriate icon for the file based on its extension
-		ic := ip.ForExecutable(filepath.Ext(f))
+		ic := ip.ForExecutable(f)
 
 		// Get the appropriate color for the file based on its extension and combine it with the icon
-		col := c.ForExecutable(filepath.Ext(f))
-		coloredName := col.Sprint(f)
+		col := c.ForExecutable(f)
+		coloredName := col.Sprint(f.Name())
 
 		colored[i] = ic + coloredName
 	}

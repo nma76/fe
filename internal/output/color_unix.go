@@ -2,10 +2,14 @@
 
 package output
 
-import "github.com/fatih/color"
+import (
+	"os"
+
+	"github.com/fatih/color"
+)
 
 type PlatformColorizer struct{}
 
-func (PlatformColorizer) ForExecutable(ext string) *color.Color {
+func (PlatformColorizer) ForExecutable(f os.FileInfo) *color.Color {
 	return color.New(color.FgGreen)
 }

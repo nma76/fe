@@ -3,6 +3,8 @@
 package output
 
 import (
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/fatih/color"
@@ -10,8 +12,8 @@ import (
 
 type PlatformColorizer struct{}
 
-func (PlatformColorizer) ForExecutable(ext string) *color.Color {
-	ext = strings.ToLower(ext)
+func (PlatformColorizer) ForExecutable(f os.FileInfo) *color.Color {
+	ext := strings.ToLower(filepath.Ext(f.Name()))
 
 	switch ext {
 	case ".exe":

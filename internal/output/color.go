@@ -1,8 +1,12 @@
 package output
 
-import "github.com/fatih/color"
+import (
+	"os"
+
+	"github.com/fatih/color"
+)
 
 type Colorizer interface {
-	ForExecutable(ext string) *color.Color
+	ForExecutable(f os.FileInfo) *color.Color
 	ForMessages() *color.Color
 }

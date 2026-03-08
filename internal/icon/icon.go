@@ -1,5 +1,7 @@
 package icon
 
+import "os"
+
 type IconProvider interface {
-	ForExecutable(ext string) string
+	ForExecutable(f os.FileInfo) string
 }
