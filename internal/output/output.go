@@ -23,7 +23,7 @@ func PrintFiles(files []string, c Colorizer, ip icon.IconProvider) {
 		col := c.ForExecutable(filepath.Ext(f))
 		coloredName := col.Sprint(f)
 
-		colored[i] = ic + " " + coloredName
+		colored[i] = ic + coloredName
 	}
 
 	printColumns(colored)

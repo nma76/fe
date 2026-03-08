@@ -8,6 +8,7 @@ type Options struct {
 	Path  string
 	Help  bool
 	Debug bool
+	Icon  bool
 }
 
 func Parse() Options {
@@ -24,6 +25,10 @@ func Parse() Options {
 	// debug flag to enable debug output
 	flag.BoolVar(&opts.Debug, "debug", false, "Enable debug output")
 
+	// icon flag to enable icon output
+	flag.BoolVar(&opts.Icon, "icon", false, "Enable icon output")
+
+	// Parse the command-line flags
 	flag.Parse()
 
 	return opts

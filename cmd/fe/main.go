@@ -11,14 +11,19 @@ import (
 )
 
 func main() {
+	// Parse command-line options
+	opts := cli.Parse()
+
 	// Handles colored output for messages and executables
 	colorizer := output.PlatformColorizer{}
 
 	// Provides icons for executables based on their file extension
-	iconProvider := icon.DefaultIconProvider{}
-
-	// Parse command-line options
-	opts := cli.Parse()
+	var iconProvider icon.IconProvider
+	if opts.Icon {
+		iconProvider = icon.DefaultIconProvider{}
+	} else {
+		iconProvider = icon.NoIconProvider{}
+	}
 
 	// Enable debug output if the debug flag is set
 	if opts.Debug {
