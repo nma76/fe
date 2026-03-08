@@ -16,6 +16,12 @@ func main() {
 	// Parse command-line options
 	opts := cli.Parse()
 
+	// Enable debug output if the debug flag is set
+	if opts.Debug {
+		debug.Enabled = true
+		debug.Println("Debug: enabled")
+	}
+
 	// If the help flag is set, print the help message and exit
 	if opts.Help {
 		help.PrintHelp()
@@ -28,14 +34,10 @@ func main() {
 	// Create a new scanner with the platform detector and scan the specified path for executables
 	scan := scanner.Scanner{Detector: det}
 	files, err := scan.Scan(opts.Path)
-
 	// Handle any errors that occur during scanning
 	if err != nil {
 		panic(err)
 	}
-
-	// TODO: use same structure as other flags
-	debug.Println("Path:", opts.Path)
 
 	// Print the found executables with appropriate colors
 	output.PrintFiles(files, colorizer)

@@ -1,13 +1,13 @@
 package cli
 
 import (
-	"fe/internal/debug"
 	"flag"
 )
 
 type Options struct {
-	Path string
-	Help bool
+	Path  string
+	Help  bool
+	Debug bool
 }
 
 func Parse() Options {
@@ -22,7 +22,7 @@ func Parse() Options {
 	flag.BoolVar(&opts.Help, "h", false, "shorthand for --help")
 
 	// debug flag to enable debug output
-	flag.BoolVar(&debug.Enabled, "debug", false, "Enable debug output")
+	flag.BoolVar(&opts.Debug, "debug", false, "Enable debug output")
 
 	flag.Parse()
 

@@ -9,3 +9,4 @@
 - bygga kolumnlayout. ✅
 - target i Makefile som kontrollerar kompatibilitet ✅
 - make install
+- Add debug outputs in output, scanner etc.
