@@ -2,6 +2,7 @@ package main
 
 import (
 	"fe/internal/cli"
+	"fe/internal/debug"
 	"fe/internal/detector"
 	"fe/internal/output"
 	"fe/internal/scanner"
@@ -10,10 +11,6 @@ import (
 func main() {
 	// Handles colored output for messages and executables
 	colorizer := output.PlatformColorizer{}
-
-	// Print a welcome message
-	//c := colorizer.ForMessages()
-	//c.Println(("This is fe... 2026 edition!"))
 
 	// Parse command-line options
 	opts := cli.Parse()
@@ -30,9 +27,7 @@ func main() {
 		panic(err)
 	}
 
-	// fmt.Println("Debug:")
-	// fmt.Printf("%#v\n", files)
-	// fmt.Println("End Debug:")
+	debug.Println("Path:", opts.Path)
 
 	// Print the found executables with appropriate colors
 	output.PrintFiles(files, colorizer)

@@ -23,7 +23,7 @@ func (s Scanner) Scan(path string) ([]string, error) {
 		full := filepath.Join(path, e.Name())
 
 		if !info.IsDir() && s.Detector.IsExecutable(full, info) {
-			executables = append(executables, full)
+			executables = append(executables, e.Name())
 		}
 	}
 	return executables, nil
