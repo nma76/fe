@@ -4,6 +4,7 @@ import (
 	"fe/internal/cli"
 	"fe/internal/debug"
 	"fe/internal/detector"
+	"fe/internal/help"
 	"fe/internal/output"
 	"fe/internal/scanner"
 )
@@ -14,6 +15,12 @@ func main() {
 
 	// Parse command-line options
 	opts := cli.Parse()
+
+	// If the help flag is set, print the help message and exit
+	if opts.Help {
+		help.PrintHelp()
+		return
+	}
 
 	// Create a new platform detector
 	det := detector.PlatformDetector{}
@@ -27,6 +34,7 @@ func main() {
 		panic(err)
 	}
 
+	// TODO: use same structure as other flags
 	debug.Println("Path:", opts.Path)
 
 	// Print the found executables with appropriate colors
