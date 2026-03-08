@@ -6,6 +6,6 @@
 - implementera WindowsDetector (extensions). ✅
 - lägga till färgteman. 
 - lägga till CLI‑flaggor. 
-- bygga kolumnlayout. 
-- lägga till rekursiv scanning. 
-- target i Makefile som kontrollerar kompatibilitet
+- bygga kolumnlayout. ✅
+- target i Makefile som kontrollerar kompatibilitet ✅
+- make install

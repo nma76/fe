@@ -1,14 +1,17 @@
 package cli
 
+import "flag"
+
 type Options struct {
-	Path  string
-	Theme string
+	Path string
 }
 
 func Parse() Options {
-	// TODO: parse flags
-	return Options{
-		Path:  ".",
-		Theme: "classic",
-	}
+	var opts Options
+
+	flag.StringVar(&opts.Path, "path", ".", "Directory to scan for executables")
+	flag.StringVar(&opts.Path, "p", ".", "shorthand fpr --path")
+	flag.Parse()
+
+	return opts
 }
