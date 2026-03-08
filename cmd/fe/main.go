@@ -5,6 +5,7 @@ import (
 	"fe/internal/debug"
 	"fe/internal/detector"
 	"fe/internal/help"
+	"fe/internal/icon"
 	"fe/internal/output"
 	"fe/internal/scanner"
 )
@@ -12,6 +13,9 @@ import (
 func main() {
 	// Handles colored output for messages and executables
 	colorizer := output.PlatformColorizer{}
+
+	// Provides icons for executables based on their file extension
+	iconProvider := icon.DefaultIconProvider{}
 
 	// Parse command-line options
 	opts := cli.Parse()
@@ -40,5 +44,5 @@ func main() {
 	}
 
 	// Print the found executables with appropriate colors
-	output.PrintFiles(files, colorizer)
+	output.PrintFiles(files, colorizer, iconProvider)
 }

@@ -4,7 +4,6 @@
 
 - implementera UnixDetector (chmod +x). ✅
 - implementera WindowsDetector (extensions). ✅
-- lägga till färgteman. 
 - lägga till CLI‑flaggor. ✅
 - bygga kolumnlayout. ✅
 - target i Makefile som kontrollerar kompatibilitet ✅
