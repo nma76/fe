@@ -12,9 +12,15 @@ import (
 
 var ansi = regexp.MustCompile(`\x1b\[[0-9;]*[A-Za-z]`)
 
+// visibleLen returns the length of the string without ANSI escape codes.
 func visibleLen(s string) int {
 	clean := ansi.ReplaceAllString(s, "")
 	return utf8.RuneCountInString(clean)
+}
+
+// Wrapper for testing
+func VisibleLen(s string) int {
+	return visibleLen(s)
 }
 
 func printColumns(items []string) {

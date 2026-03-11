@@ -10,3 +10,4 @@
 - make install
 - Add debug outputs in output, scanner etc.
 - Tester
+- Github Actions

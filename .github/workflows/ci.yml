@@ -19,3 +19,6 @@ jobs:
 
             - name: Build
               run: go build ./cmd/fe
+
+            - name: Run tests
+              run: go test ./... -v
