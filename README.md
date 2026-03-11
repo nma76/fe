@@ -9,11 +9,14 @@ I aim for this to build and work on most platforms, but it's mostly tested on Ma
 The main purpose of this project is to learn more about Go in general, and also dust off the old Makefile skills i used to have back in the day :)
   
 ## Build
-make build - build for current os/platform
+make build - build for current os/platform  
+make release - build for all supported os/platforms  
 
-Set GOOS and GOARCH to build for another. Eg.  
-- make build GOOS=windows GOARCH=amd64  
-- make build GOOS=linux GOARCH=amd64  
+### Build for a specific supported os
+make build-linux  
+make build-darwin  
+make build-windows  
 
-Check for compatibility for your platform:
-- make prereq (also run by make build)
+## Install / uninstall
+make install - install to /usr/local/bin  
+make uninstall

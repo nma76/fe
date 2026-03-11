@@ -9,20 +9,18 @@ CMD=./cmd/fe
 # Output directory for the built binary
 BIN=./bin
 
-# Supported platforms
-SUPPORTED := darwin linux freebsd netbsd openbsd  windows
-
-# Detect the host OS
-OS := $(shell uname | tr '[:upper:]' '[:lower:]')
-
-# Handle special case for Windows (mingw)
-ifeq ($(findstring mingw,$(OS)),mingw)
-	OS := windows
-endif
-
-# Default to host OS/architecture if not set
+# Default to the host's GOOS and GOARCH if not set
 GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
+
+# Default build (native)
+all: build
+
+# Suppress command output
+.SILENT:
+
+# Make sure make runs even if files exist with the same name as targets
+.PHONY: all build clean install uninstall release build-linux build-darwin build-windows
 
 # Add .exe extension for Windows builds
 EXT := 
@@ -30,38 +28,52 @@ ifeq ($(GOOS),windows)
 	EXT := .exe
 endif
 
-# Suppress command output
-.SILENT:
-
-# Make sure make runs even if files exist with the same name as targets
-.PHONY: all build clean prereq
-
-# Default target
-all: build
-
-# Check for prerequisites
-prereq:
-	echo "Detected platform: $(OS)"
-	if echo "$(SUPPORTED)" | grep -wq "$(OS)"; then \
-		echo "Platform $(OS) is supported."; \
-	else \
-		echo "Error: Platform $(OS) is not supported."; \
-		exit 1; \
-	fi
-
-# Build the application
-build: clean prereq
+build:
 	echo "Building $(APP) for $(GOOS)/$(GOARCH)..."
 	mkdir -p $(BIN)
 	go build -o $(BIN)/$(APP)$(EXT) $(CMD)
-	echo "Build complete!"
+	echo "Build complete: $(BIN)/$(APP)$(EXT)"
 
-# Run the application
-run:
-	go run $(CMD)
+install: build
+	if [ -w /usr/local/bin ]; then \
+		echo "Installing to /usr/local/bin..."; \
+		install -m 755 $(BIN)/$(APP)$(EXT) /usr/local/bin/$(APP); \
+	else \
+		echo "Using sudo to install to /usr/local/bin..."; \
+		sudo install -m 755 $(BIN)/$(APP)$(EXT) /usr/local/bin/$(APP); \
+	fi
+	echo "Installed!"
 
-# Clean up the build artifacts
+uninstall:
+	if [ -w /usr/local/bin ]; then \
+		echo "Uninstalling from /usr/local/bin..."; \
+		rm -f /usr/local/bin/$(APP); \
+	else \
+		echo "Using sudo to uninstall from /usr/local/bin..."; \
+		sudo rm -f /usr/local/bin/$(APP); \
+	fi
+	echo "Uninstalled!"
+
 clean:
 	echo "Cleaning..."
 	rm -rf $(BIN)
 	echo "Clean complete."
+
+# cross-compile the application for all supported platforms
+build-linux:
+	GOOS=linux GOARCH=amd64 go build -o $(BIN)/$(APP)-linux-amd64 $(CMD)
+	GOOS=linux GOARCH=arm64 go build -o $(BIN)/$(APP)-linux-arm64 $(CMD)
+	echo "Linux builds complete!"
+
+build-darwin:
+	GOOS=darwin GOARCH=amd64 go build -o $(BIN)/$(APP)-darwin-amd64 $(CMD)
+	GOOS=darwin GOARCH=arm64 go build -o $(BIN)/$(APP)-darwin-arm64 $(CMD)
+	echo "MacOs builds complete!"
+
+build-windows:
+	GOOS=windows GOARCH=amd64 go build -o $(BIN)/$(APP)-windows-amd64.exe $(CMD)
+	GOOS=windows GOARCH=arm64 go build -o $(BIN)/$(APP)-windows-arm64.exe $(CMD)
+	echo "Windows builds complete!"
+
+release: clean build-linux build-darwin build-windows
+	echo "All platform builds complete!"

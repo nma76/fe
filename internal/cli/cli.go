@@ -32,6 +32,8 @@ func Parse() Options {
 	// If user provided a positional argument, treat it as the path
 	if flag.NArg() > 0 {
 		opts.Path = flag.Arg(0)
+	} else {
+		opts.Path = "."
 	}
 
 	return opts
