@@ -1,7 +1,6 @@
 # Go build cache & modules
 /pkg/
 /vendor/
-/go.sum
 
 # macOS system files
 .DS_Store
