@@ -23,3 +23,6 @@ test/
 *.tmp
 *.swp
 *.swo
+
+# Exclude instructions
+INSTRUCTIONS.md
