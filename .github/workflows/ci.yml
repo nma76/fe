@@ -29,5 +29,6 @@ jobs:
             - name: Generate coverage badge
               uses: ncruces/go-coverage-report@v0
               with:
+                coverage-file: coverage.out
                 output: coverage.svg
                 output-dir: .
