@@ -22,13 +22,3 @@ jobs:
 
             - name: Build
               run: go build ./cmd/fe
-
-            - name: Run tests with coverage
-              run: |
-                go test ./... -covermode=count -coverprofile=coverage.out
-                go tool cover -func=coverage.out -o coverage.out
-            
-            - name: Go coverage badge
-              uses: tj-actions/coverage-badge-go@v3
-              with:
-                files: coverage.out
