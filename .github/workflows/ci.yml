@@ -24,6 +24,6 @@ jobs:
               run: go test ./... -coverprofile=coverage.out
 
             - name: Generate coverage badge
-              uses: ncruces/go-coverage-badge@v1
+              uses: ncruces/go-coverage-badge@latest
               with:
                 outout: coverage.svg
