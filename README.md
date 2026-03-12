@@ -1,4 +1,5 @@
 [![CI](https://github.com/nma76/fe/actions/workflows/ci.yml/badge.svg)](https://github.com/nma76/fe/actions/workflows/ci.yml)
+![Coverage](coverage.svg)
 
 # Read Me
 
