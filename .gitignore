@@ -13,8 +13,9 @@
 # Output folder 
 bin/
 
-# Test data folder
+# Test files data folder
 test/
+coverage.out
 
 # Logs
 *.log
