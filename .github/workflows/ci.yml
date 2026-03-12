@@ -20,5 +20,10 @@ jobs:
             - name: Build
               run: go build ./cmd/fe
 
-            - name: Run tests
-              run: go test ./... -v
+            - name: Run tests with coverage
+              run: go test ./... -coverprofile=coverage.out
+
+            - name: Generate coverage badge
+              uses: ncruces/go-coverage-badge@v1
+              with:
+                outout: coverage.svg
