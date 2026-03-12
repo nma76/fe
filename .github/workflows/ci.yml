@@ -24,16 +24,11 @@ jobs:
               run: go build ./cmd/fe
 
             - name: Run tests with coverage
-              run: go test ./... -coverprofile=coverage.out
-
-            - name: Generate coverage badge
-              uses: tj-actions/coverage-badge@v2
+              run: |
+                go test ./... -covermode=count -coverprofile=coverage.out
+                go tool cover -func=coverage.out -o coverage.out
+            
+            - name: Go coverage badge
+              uses: tj-actions/coverage-badge-go@v3
               with:
-                filename: coverage.out
-                output: coverage.svg
-
-            - name: Commit coverage badge
-              uses: stefanzweifel/git-auto-commit-action@v5
-              with:
-                commit_message: "Update coverage badge"
-                file_pattern: coverage.svg
+                files: coverage.out
