@@ -22,3 +22,11 @@ make build-windows
 ## Install / uninstall
 make install - install to /usr/local/bin  
 make uninstall
+
+## How to use:
+Usage: __fe [options] [directory]__
+  
+Options:  
+ -h, --help              Show this help message  
+ -i, --icon              Show icon for each file  
+ -d, --debug             Enable debug output  
