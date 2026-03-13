@@ -8,6 +8,8 @@ import (
 	"fe/internal/icon"
 	"fe/internal/output"
 	"fe/internal/scanner"
+	"fmt"
+	"os"
 )
 
 func main() {
@@ -45,7 +47,9 @@ func main() {
 	files, err := scan.Scan(opts.Path)
 	// Handle any errors that occur during scanning
 	if err != nil {
-		panic(err)
+		//panic(err)
+		fmt.Fprintf(os.Stderr, "fe: %v\n", err)
+		os.Exit(1)
 	}
 
 	// Print the found executables with appropriate colors
