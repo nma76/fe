@@ -5,10 +5,11 @@ import (
 )
 
 type Options struct {
-	Path  string
-	Help  bool
-	Debug bool
-	Icon  bool
+	Path   string
+	Help   bool
+	Debug  bool
+	Icon   bool
+	Filter string
 }
 
 func Parse() Options {
@@ -21,6 +22,10 @@ func Parse() Options {
 	// icon flag to enable icon output
 	flag.BoolVar(&opts.Icon, "icon", false, "Enable icon output")
 	flag.BoolVar(&opts.Icon, "i", false, "shorthand for --icon")
+
+	// filter on filename
+	flag.StringVar(&opts.Filter, "filter", "", "Filter files by name")
+	flag.StringVar(&opts.Filter, "f", "", "Shorthand for --filter")
 
 	// debug flag to enable debug output
 	flag.BoolVar(&opts.Debug, "debug", false, "Enable debug output")

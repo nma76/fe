@@ -43,7 +43,7 @@ func main() {
 	det := detector.PlatformDetector{}
 
 	// Create a new scanner with the platform detector and scan the specified path for executables
-	scan := scanner.Scanner{Detector: det}
+	scan := scanner.Scanner{Detector: det, Filter: opts.Filter}
 	files, err := scan.Scan(opts.Path)
 	// Handle any errors that occur during scanning
 	if err != nil {

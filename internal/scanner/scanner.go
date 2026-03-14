@@ -4,10 +4,12 @@ import (
 	"fe/internal/detector"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Scanner struct {
 	Detector detector.ExecutableDetector
+	Filter   string
 }
 
 func (s Scanner) Scan(path string) ([]os.FileInfo, error) {
@@ -22,7 +24,15 @@ func (s Scanner) Scan(path string) ([]os.FileInfo, error) {
 		info, _ := e.Info()
 		full := filepath.Join(path, e.Name())
 
-		if !info.IsDir() && s.Detector.IsExecutable(full, info) {
+		if info.IsDir() {
+			continue
+		}
+
+		if s.Filter != "" && !strings.Contains(strings.ToLower(info.Name()), strings.ToLower(s.Filter)) {
+			continue
+		}
+
+		if s.Detector.IsExecutable(full, info) {
 			executables = append(executables, info)
 		}
 	}
