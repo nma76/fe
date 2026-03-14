@@ -15,7 +15,7 @@ archives:
     files:
       - README.md
 
-checksums:
+checksum:
   name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
 
 release:
