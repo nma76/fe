@@ -16,6 +16,18 @@ func main() {
 	// Parse command-line options
 	opts := cli.Parse()
 
+	// If the help flag is set, print the help message and exit
+	if opts.Help {
+		help.PrintHelp()
+		return
+	}
+
+	// If the version flag is set, print version information and exit
+	if opts.Version {
+		fmt.Println("fe version 1.0.0")
+		return
+	}
+
 	// Handles colored output for messages and executables
 	colorizer := output.PlatformColorizer{}
 
@@ -31,12 +43,6 @@ func main() {
 	if opts.Debug {
 		debug.Enabled = true
 		debug.Println("Debug: enabled")
-	}
-
-	// If the help flag is set, print the help message and exit
-	if opts.Help {
-		help.PrintHelp()
-		return
 	}
 
 	// Create a new platform detector
