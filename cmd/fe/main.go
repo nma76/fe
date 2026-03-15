@@ -12,9 +12,28 @@ import (
 	"os"
 )
 
+// Version information, set at build time using -ldflags
+var (
+	Version   = "dev"
+	Commit    = "none"
+	BuildDate = "unknown"
+)
+
 func main() {
 	// Parse command-line options
 	opts := cli.Parse()
+
+	// If the help flag is set, print the help message and exit
+	if opts.Help {
+		help.PrintHelp()
+		return
+	}
+
+	// If the version flag is set, print version information and exit
+	if opts.Version {
+		fmt.Printf("fe version %s (commit: %s, built: %s)\n", Version, Commit, BuildDate)
+		return
+	}
 
 	// Handles colored output for messages and executables
 	colorizer := output.PlatformColorizer{}
@@ -31,12 +50,6 @@ func main() {
 	if opts.Debug {
 		debug.Enabled = true
 		debug.Println("Debug: enabled")
-	}
-
-	// If the help flag is set, print the help message and exit
-	if opts.Help {
-		help.PrintHelp()
-		return
 	}
 
 	// Create a new platform detector

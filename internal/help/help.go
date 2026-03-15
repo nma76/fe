@@ -12,5 +12,6 @@ func PrintHelp() {
 	fmt.Println(" -h, --help              Show this help message")
 	fmt.Println(" -i, --icon              Show icon for each file")
 	fmt.Println(" -f, --filter            Filter files on their names")
+	fmt.Println(" -v, --version           Show version information")
 	fmt.Println(" -d, --debug             Enable debug output")
 }
