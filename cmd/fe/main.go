@@ -12,6 +12,13 @@ import (
 	"os"
 )
 
+// Version information, set at build time using -ldflags
+var (
+	Version   = "dev"
+	Commit    = "none"
+	BuildDate = "unknown"
+)
+
 func main() {
 	// Parse command-line options
 	opts := cli.Parse()
@@ -24,7 +31,7 @@ func main() {
 
 	// If the version flag is set, print version information and exit
 	if opts.Version {
-		fmt.Println("fe version 1.0.0")
+		fmt.Printf("fe version %s (commit: %s, built: %s)\n", Version, Commit, BuildDate)
 		return
 	}
 
